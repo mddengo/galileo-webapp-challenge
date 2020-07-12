@@ -24,6 +24,7 @@ export function TaskReducer(
     const stateCopy = { ...state };
     switch (action.type) {
         case LOAD_TASKS_ACTION:
+            console.log('in reducer');
             if (action.payload) {
                 const tasks = action.payload;
                 tasks.forEach((task: Task) => {
@@ -33,6 +34,7 @@ export function TaskReducer(
                     stateCopy.tasks[task.owner].push(task);
                 });
             }
+            console.log(stateCopy);
             return stateCopy;
         default:
             return state;
