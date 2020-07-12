@@ -101,7 +101,7 @@ class ProviderPage extends Component<Props, State> {
                         />
                     </Grid>
                 </Grid>
-                <Grid container spacing={2} data-testid="provider-information" lg={12} md={12} sm={12} xs={12}>
+                <Grid container spacing={2} data-testid="provider-information">
                     {
                         this.props.providers.map(
                             provider => (
