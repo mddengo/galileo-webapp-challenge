@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
     h1: {
       fontFamily: 'Libre Baskerville',
       margin: 10,
+      color: '#0f1430',
     }
   }),
 );
@@ -47,11 +48,9 @@ function App() {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <header className="App-header">
-        <Typography variant="h1" className={classes.h1}>
-          Welcome.
+      <Typography variant="h1" className={classes.h1}>
+        Welcome.
         </Typography>
-      </header>
       <Container maxWidth="lg" className="App-container">
         <ProviderPortal data-testid="provider-portal" />
       </Container>
