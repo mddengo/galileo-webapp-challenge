@@ -79,7 +79,9 @@ const ProviderCard = (props: Prop) => {
                                     id={task.task_id}
                                     expandIcon={<ExpandMore />}
                                 >
-                                    {task.task_id}
+                                    <Typography>
+                                        {task.task_id} with priority: {task.priority}
+                                    </Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Typography>
