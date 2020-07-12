@@ -1,3 +1,6 @@
+/**
+ * Provider types and reducer
+ */
 import { setProvider, SET_PROVIDER_ACTION } from './providerActions';
 
 export type Provider = {
@@ -19,7 +22,7 @@ export function ProviderReducer(
     state = initialState,
     action: ProviderAction
 ): ProviderState {
-    const existingProviders = [ ...state.providers ];
+    const existingProviders = [...state.providers];
     switch (action.type) {
         case SET_PROVIDER_ACTION:
             const newProvider = action.payload;

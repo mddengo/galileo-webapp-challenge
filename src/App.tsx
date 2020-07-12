@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {ProviderPortal} from './Provider';
-import { Container, Card } from '@material-ui/core';
+import { Container } from '@material-ui/core';
 
 function App() {
   return (
@@ -9,10 +9,8 @@ function App() {
       <header className="App-header">
         <h1>Welcome.</h1>
       </header>
-      <Container maxWidth="md">
-        <Card variant="outlined">
-          <ProviderPortal />
-        </Card>
+      <Container maxWidth="lg" className="App-container">
+        <ProviderPortal />
       </Container>
     </div>
   );

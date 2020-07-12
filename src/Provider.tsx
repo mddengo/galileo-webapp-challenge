@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import { SearchOutlined } from '@material-ui/icons';
 import { TextField, Button, Grid } from '@material-ui/core';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -13,6 +13,20 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { Provider } from './redux/modules/provider/provider';
 import { setProvider } from './redux/modules/provider/providerActions';
 import { ProviderTaskInformation } from './provider/providerCard';
+import {
+    withStyles,
+    Theme,
+  } from '@material-ui/core/styles';
+
+ const ColorButton = withStyles((theme: Theme) => ({
+    root: {
+      color: theme.palette.getContrastText('#ffd040'),
+      backgroundColor: '#ffd040',
+      '&:hover': {
+        backgroundColor: '#ffeabf',
+      },
+    },
+  }))(Button);
 
 class ProviderPage extends Component<Props, State> {
     static defaultProps = {
@@ -71,12 +85,12 @@ class ProviderPage extends Component<Props, State> {
                                                 <SearchOutlined />
                                             </InputAdornment>
                                         ), endAdornment: (
-                                            <Button variant="contained"
+                                            <ColorButton variant="contained"
                                                 disabled={Object.keys(this.state.selectedProvider).length === 0}
                                                 onClick={this.handleOnAdd}
                                             >
                                                 Add Provider
-                                            </Button>
+                                            </ColorButton>
                                         )
                                     }}
                                 />
@@ -84,10 +98,14 @@ class ProviderPage extends Component<Props, State> {
                         />
                     </Grid>
                 </Grid>
-                <Grid container>
+                <Grid container spacing={2}>
                     {
                         this.props.providers.map(
-                            provider => <ProviderTaskInformation key={provider.doctor_id} provider={provider} />
+                            provider => (
+                                <Grid item xs={4} key={provider.doctor_id}>
+                                    <ProviderTaskInformation provider={provider} />
+                                </Grid>
+                            )
                         )
                     }
 
