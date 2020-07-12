@@ -11,8 +11,8 @@ export function typedAction(type: string, payload?: any) {
   return { type, payload };
 }
 
-export const LOAD_PROVIDERS_ACTION = 'providersLoad';
+export const SET_PROVIDER_ACTION = 'providerSet';
 
-export const loadProviders = (providers: Provider[]) => {
-  return typedAction(LOAD_PROVIDERS_ACTION, providers);
+export const setProvider = (providers: Provider) => {
+  return typedAction(SET_PROVIDER_ACTION, providers);
 };
