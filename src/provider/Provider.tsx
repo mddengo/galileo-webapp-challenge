@@ -68,7 +68,7 @@ class ProviderPage extends Component<Props, State> {
         return (
             <div>
                 <Grid container>
-                    <Grid item xs={12}>
+                    <Grid item lg={12} md={12} sm={12} xs={12}>
                         <Autocomplete
                             data-testid="provider-search-bar"
                             id="free-solo-2-demo"
@@ -101,11 +101,11 @@ class ProviderPage extends Component<Props, State> {
                         />
                     </Grid>
                 </Grid>
-                <Grid container spacing={2} data-testid="provider-information">
+                <Grid container spacing={2} data-testid="provider-information" lg={12} md={12} sm={12} xs={12}>
                     {
                         this.props.providers.map(
                             provider => (
-                                <Grid item xs={4} key={provider.doctor_id}>
+                                <Grid item lg={4} sm={6} xs={12} key={provider.doctor_id}>
                                     <ProviderTaskInformation provider={provider} />
                                 </Grid>
                             )
