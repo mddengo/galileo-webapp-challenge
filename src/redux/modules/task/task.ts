@@ -1,3 +1,6 @@
+/**
+ * Task types and reducer
+ */
 import { load, LOAD_TASKS_ACTION } from './taskActions';
 
 export type Task = {

@@ -1,5 +1,5 @@
 /**
- * Selectors for provider
+ * Selectors for tasks
  */
 import { RootState } from '../../../redux';
 
