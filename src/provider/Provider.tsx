@@ -1,5 +1,5 @@
 /**
- * Main page for searching for a provider and adding them and their tasks
+ * Main page for searching for a provider and adding to page with their tasks
  */
 import React, { Component } from 'react';
 import { SearchOutlined } from '@material-ui/icons';
