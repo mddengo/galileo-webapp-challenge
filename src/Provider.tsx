@@ -50,48 +50,48 @@ class ProviderPage extends Component<Props, State> {
     render() {
         return (
             <div>
-            <Grid container>
-                <Grid item xs={12}>
-                    <Autocomplete
-                        freeSolo
-                        id="free-solo-2-demo"
-                        disableClearable
-                        options={this.state.providers}
-                        getOptionLabel={(option: Provider) => `${option.first_name} ${option.last_name}`}
-                        onChange={this.handleSelectForSearch}
-                        renderInput={(params: any) => (
-                            <TextField
-                                {...params}
-                                label="Search for a provider to add"
-                                margin="normal"
-                                variant="outlined"
-                                InputProps={{
-                                    ...params.InputProps, type: 'search', startAdornment: (
-                                        <InputAdornment position="start">
-                                            <SearchOutlined />
-                                        </InputAdornment>
-                                    ), endAdornment: (
-                                        <Button variant="contained"
-                                            disabled={Object.keys(this.state.selectedProvider).length === 0}
-                                            onClick={this.handleOnAdd}
-                                        >
-                                            Add Provider
-                                        </Button>
-                                    )
-                                }}
-                            />
-                        )}
-                    />
+                <Grid container>
+                    <Grid item xs={12}>
+                        <Autocomplete
+                            freeSolo
+                            id="free-solo-2-demo"
+                            disableClearable
+                            options={this.state.providers}
+                            getOptionLabel={(option: Provider) => `${option.first_name} ${option.last_name}`}
+                            onChange={this.handleSelectForSearch}
+                            renderInput={(params: any) => (
+                                <TextField
+                                    {...params}
+                                    label="Search for a provider to add"
+                                    margin="normal"
+                                    variant="outlined"
+                                    InputProps={{
+                                        ...params.InputProps, type: 'search', startAdornment: (
+                                            <InputAdornment position="start">
+                                                <SearchOutlined />
+                                            </InputAdornment>
+                                        ), endAdornment: (
+                                            <Button variant="contained"
+                                                disabled={Object.keys(this.state.selectedProvider).length === 0}
+                                                onClick={this.handleOnAdd}
+                                            >
+                                                Add Provider
+                                            </Button>
+                                        )
+                                    }}
+                                />
+                            )}
+                        />
+                    </Grid>
                 </Grid>
-            </Grid>
-            <Grid container>
-                {
-                    this.props.providers.map(
-                        provider => <ProviderTaskInformation key={provider.doctor_id} provider={provider} />
-                    )
-                }
+                <Grid container>
+                    {
+                        this.props.providers.map(
+                            provider => <ProviderTaskInformation key={provider.doctor_id} provider={provider} />
+                        )
+                    }
 
-            </Grid>
+                </Grid>
             </div>
         )
     }

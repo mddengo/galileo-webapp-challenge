@@ -19,14 +19,15 @@ export function ProviderReducer(
     state = initialState,
     action: ProviderAction
 ): ProviderState {
-    const stateCopy = { ...state };
+    const existingProviders = [ ...state.providers ];
     switch (action.type) {
         case SET_PROVIDER_ACTION:
             const newProvider = action.payload;
-            if (!stateCopy.providers.some(provider => provider.doctor_id === newProvider.doctor_id)) {
-                stateCopy.providers.push(action.payload);
+            if (!existingProviders.some(provider => provider.doctor_id === newProvider.doctor_id)) {
+                existingProviders.push(newProvider);
+                return { ...state, providers: existingProviders };
             }
-            return stateCopy;
+            return state;
         default:
             return state;
     }

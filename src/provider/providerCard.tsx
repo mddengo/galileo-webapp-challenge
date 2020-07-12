@@ -27,7 +27,6 @@ const comparePriorities = (task1: Task, task2: Task) => {
     return 0;
 }
 
-
 const ProviderCard = (props: Prop) => (
     <Card>
         <CardHeader
