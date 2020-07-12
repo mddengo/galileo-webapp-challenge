@@ -1,4 +1,4 @@
-import { load, LOAD_PROVIDERS_ACTION } from './providerActions';
+import { loadProviders, LOAD_PROVIDERS_ACTION } from './providerActions';
 
 export type Provider = {
     doctor_id: string,
@@ -8,7 +8,7 @@ export type Provider = {
     degree: string
 }
 
-type ProviderAction = ReturnType<typeof load>;
+type ProviderAction = ReturnType<typeof loadProviders>;
 
 type ProviderState = {
     providers: Provider[]

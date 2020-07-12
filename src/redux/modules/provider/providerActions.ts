@@ -13,6 +13,6 @@ export function typedAction(type: string, payload?: any) {
 
 export const LOAD_PROVIDERS_ACTION = 'providersLoad';
 
-export const load = (providers: Provider[]) => {
+export const loadProviders = (providers: Provider[]) => {
   return typedAction(LOAD_PROVIDERS_ACTION, providers);
 };
