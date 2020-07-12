@@ -3,15 +3,25 @@ import SearchOutlined from '@material-ui/icons/SearchOutlined';
 import { TextField } from '@material-ui/core';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import { RootState } from './redux';
+import { loadAllProviders } from './redux/modules/provider/providerThunk';
+import { getProviders } from './redux/modules/provider/providerSelectors';
+import { getTasks } from './redux/modules/task/taskSelectors';
+import { loadTasks } from './redux/modules/task/taskThunk';
+import { loadAllProvidersAndTasks } from './redux/thunks/loadDataThunk';
+import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
+import { AppThunk } from './constants';
+import { Provider } from './redux/modules/provider/provider';
 
-function FreeSolo() {
+function FreeSolo(providers: Provider[]) {
     return (
         <div style={{ width: 300 }}>
             <Autocomplete
                 freeSolo
                 id="free-solo-2-demo"
                 disableClearable
-                options={top100Films.map((option) => option.title)}
+                options={providers.map((option: Provider) => `${option.first_name} ${option.last_name}`)}
                 clearOnEscape
                 renderInput={(params: any) => (
                     <TextField
@@ -33,35 +43,71 @@ function FreeSolo() {
     );
 }
 
-function ProviderSearch() {
-    const [searchText, setText] = useState('');
-    return (
-        <TextField
-            id="provider-search-field"
-            label="Search for a provider to add"
-            InputProps={{
-                startAdornment: (
-                    <InputAdornment position="start">
-                        <SearchOutlined />
-                    </InputAdornment>
-                ),
-            }}
-            value={searchText}
-            onChange={e => setText(e.target.value)}
-            variant="outlined"
-        />
-    );
-}
+class ProviderPage extends Component<Props> {
+    static defaultProps = {
+        providers: [],
+        tasks: {}
+    }
 
-export class ProviderPortal extends Component<{}> {
+
+    componentDidMount() {
+        if (this.props.providers.length === 0 && Object.keys(this.props.tasks).length === 0) {
+            // this.props.loadAllProvidersAndTasks();
+            this.props.loadAllProviders();
+            this.props.loadTasks();
+        }
+    }
+
     render() {
         return (
-            <FreeSolo />
+        <div style={{ width: 300 }}>
+            <Autocomplete
+                freeSolo
+                id="free-solo-2-demo"
+                disableClearable
+                options={this.props.providers.map((option: Provider) => `${option.first_name} ${option.last_name}`)}
+                clearOnEscape
+                renderInput={(params: any) => (
+                    <TextField
+                        {...params}
+                        label="Search input"
+                        margin="normal"
+                        variant="outlined"
+                        InputProps={{
+                            ...params.InputProps, type: 'search', startAdornment: (
+                                <InputAdornment position="start">
+                                    <SearchOutlined />
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
+                )}
+            />
+        </div>
         )
     }
 }
+const mapStateToProps = (state: RootState) => ({
+    providers: getProviders(state),
+    tasks: getTasks(state),
+    loadAllProvidersAndTasks,
+    loadAllProviders,
+    loadTasks
+});
+const mapDispatchToProps = (dispatch: Dispatch) => {
+    return bindActionCreators(
+        {
+          loadAllProvidersAndTasks,
+          loadAllProviders,
+          loadTasks
+        },
+        dispatch
+      );
+  }
+type Props = ReturnType<typeof mapStateToProps> &
+ReturnType<typeof mapDispatchToProps>;
 
-// export default ProviderPortal;
+export const ProviderPortal = connect(mapStateToProps, mapDispatchToProps)(ProviderPage);
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 const top100Films = [
