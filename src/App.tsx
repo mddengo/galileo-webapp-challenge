@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     h1: {
       fontFamily: 'Libre Baskerville',
+      fontSize: '5vw',
       margin: 10,
       color: '#0f1430',
     }
