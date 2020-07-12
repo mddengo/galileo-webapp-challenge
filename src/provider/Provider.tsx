@@ -70,7 +70,7 @@ class ProviderPage extends Component<Props, State> {
                 <Grid container>
                     <Grid item xs={12}>
                         <Autocomplete
-                            freeSolo
+                            data-testid="provider-search-bar"
                             id="free-solo-2-demo"
                             disableClearable
                             options={this.state.providers}
@@ -101,7 +101,7 @@ class ProviderPage extends Component<Props, State> {
                         />
                     </Grid>
                 </Grid>
-                <Grid container spacing={2}>
+                <Grid container spacing={2} data-testid="provider-information">
                     {
                         this.props.providers.map(
                             provider => (

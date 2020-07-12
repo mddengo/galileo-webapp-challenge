@@ -53,7 +53,7 @@ function App() {
         </Typography>
       </header>
       <Container maxWidth="lg" className="App-container">
-        <ProviderPortal />
+        <ProviderPortal data-testid="provider-portal" />
       </Container>
     </div>
   );
